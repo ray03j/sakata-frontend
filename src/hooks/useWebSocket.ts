@@ -33,7 +33,7 @@ export const useWebSocket = (url: string) => {
     if (ws.current?.readyState === WebSocket.OPEN) {
       const newMessage = { text };
       ws.current.send(JSON.stringify(newMessage));
-      setMessages((prev) => [...prev, { userId: "a", message: text }]); 
+      setMessages((prev) => [...prev, { userId: user_id, message: text }]); 
     }
   };
 
