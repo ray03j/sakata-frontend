@@ -1,23 +1,26 @@
 "use client";
 
-import { ChatCard, ChatCardProps } from "./chat-card";
+import { MessageType } from "@/types";
+import { ChatCard } from "./chat-card";
 
 type ChatListProps = {
-  chatcards: ChatCardProps[],
+  chatcards: MessageType[],
 }
+
+const user_id: string = import.meta.env.VITE_USER_ID!;
 
 export const ChatList = ({chatcards}: ChatListProps) => {
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      {chatcards.map((chat: ChatCardProps, id: number) => (
+      {chatcards.map((chat: MessageType, id: number) => (
         <div
-            key={id}
+          key={id}
           className={`flex ${
-            chat.isMe ? "justify-start" : "justify-end"
-          }`}
+            chat.userId===user_id ? "justify-end" : "justify-start"
+          }`} 
         >
-            <ChatCard message={chat.message} isMe={chat.isMe} />
+            <ChatCard message={chat.message} userId={chat.userId} />  
         </div>
       ))}
     </div>
