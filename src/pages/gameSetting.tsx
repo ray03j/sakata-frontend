@@ -11,20 +11,25 @@ export default function GameSettingPage() {
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div>
-      <ThemeInput />
-      
-      <InviteURLBox />
+        <div className="m-3">
+          <ThemeInput />
+        </div>
+        <div className="m-3">
+          <InviteURLBox />
+        </div>
+        <div className="flex items-center justify-center min-h-100">
+          <Link
+            className={buttonStyles({
+              color: "primary",
+              radius: "full",
+              variant: "shadow",
+            })}
+            href={siteConfig.paths.gamePlaying("12345")}
+          >
+            Start
+          </Link>
+        </div>      
 
-      <Link
-        className={buttonStyles({
-          color: "primary",
-          radius: "full",
-          variant: "shadow",
-        })}
-        href={siteConfig.paths.gamePlaying("12345")}
-      >
-        Start
-      </Link>
     </div>
       </section>
     </DefaultLayout>
