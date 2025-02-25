@@ -14,7 +14,7 @@ export default function IndexPage() {
           <span className={title({ color: "cyan" })}>Q</span>
           <br />
           <div className={subtitle({ class: "mt-4" })}>
-          わいわい&nbsp;どんどん出そう
+            わいわい&nbsp;どんどん出そう
           </div>
         </div>
 
