@@ -1,4 +1,3 @@
-import { InviteURLBox } from "@/components/invite-URL-box";
 import { ThemeInput } from "@/components/theme-input";
 import { siteConfig } from "@/config/site";
 import DefaultLayout from "@/layouts/default";
@@ -9,22 +8,19 @@ import { button as buttonStyles } from "@heroui/theme";
 export default function GameSettingPage() {
   return (
     <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <section className="">
       <div>
-        <div className="m-3">
+        <div>
           <ThemeInput />
         </div>
-        <div className="m-3">
-          <InviteURLBox />
-        </div>
-        <div className="flex items-center justify-center min-h-100">
+        <div className="flex items-center justify-center min-h-100 p-10">
           <Link
             className={buttonStyles({
               color: "primary",
               radius: "full",
               variant: "shadow",
             })}
-            href={siteConfig.paths.gamePlaying("12345")}
+            href={siteConfig.paths.gamePlaying("12345", "player1")}
           >
             Start
           </Link>
