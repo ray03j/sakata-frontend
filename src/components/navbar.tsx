@@ -17,7 +17,7 @@ import {
 
 export const Navbar = () => {
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
+    <HeroUINavbar className="bg-blue-400" maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <Link
@@ -25,7 +25,7 @@ export const Navbar = () => {
             color="foreground"
             href="/"
           >
-            <p className="font-bold text-inherit">アプリ名</p>
+            <p className="font-bold text-inherit text-white">エイくんのお気持ち</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
