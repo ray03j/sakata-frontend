@@ -6,7 +6,7 @@ export const siteConfig = {
   paths:{
     home: () => "/",
     gameSetting: (gameId: string) => `/game/${gameId}/setting`,
-    gamePlaying: (gameId: string) => `/game/${gameId}/play`,
+    gamePlaying: (gameId: string) => `/game/${gameId}/play`, // TODO: play->userId
     gameResult: (gameId: string) => `/game/${gameId}/result`,
     logout: () => "/logout",
   },
