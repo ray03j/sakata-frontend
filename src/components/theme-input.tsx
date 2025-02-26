@@ -13,7 +13,7 @@ export const ThemeInput = ({ value, onChange }: ThemeInputProps) => {
       label="テーマ"
       labelPlacement="outside"
       isRequired
-      placeholder="例）牛肉の部位を多く答えてね"
+      placeholder="例）最近あったたのしかったこと"
       value={value}
       onChange={onChange}
     />

@@ -50,7 +50,7 @@ export default function GameSettingPage() {
               onClick={handleStartGame}
               disabled={loading}
             >
-              {loading ? "Loading..." : "Generate Theme ID"}
+              {loading ? "Loading..." : "テーマ決定"}
             </button>
           </div>
           {themeId && (
