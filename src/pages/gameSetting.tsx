@@ -8,9 +8,9 @@ import { button as buttonStyles } from "@heroui/theme";
 export default function GameSettingPage() {
   return (
     <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+      <section className="">
       <div>
-        <div className="m-3">
+        <div>
           <ThemeInput />
         </div>
         <div className="flex items-center justify-center min-h-100 p-10">
