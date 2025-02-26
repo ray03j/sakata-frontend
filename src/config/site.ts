@@ -5,7 +5,7 @@ export const siteConfig = {
   description: "Make beautiful websites regardless of your design experience.",
   paths:{
     home: () => "/",
-    gameSetting: (gameId: string) => `/game/${gameId}/setting`,
+    gameSetting: () => `/game/setting`,
     gamePlaying: (gameId: string, userId: string) => `/game/${gameId}/${userId}`, 
     gameResult: (gameId: string) => `/game/${gameId}/result`,
     logout: () => "/logout",

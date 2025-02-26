@@ -12,7 +12,7 @@ export const ChatInput = ({ sendMessage }: { sendMessage: (message: string) => v
       <div>
         <Input
           labelPlacement="outside"
-          placeholder="テーマ："
+          placeholder="会話に参加してみよう！"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
