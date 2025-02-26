@@ -61,7 +61,7 @@ export default function GameSettingPage() {
                   radius: "full",
                   variant: "shadow",
                 })}
-                href={siteConfig.paths.gamePlaying(themeId, "player1")}
+                href={siteConfig.paths.gamePlaying(themeId, "player")}
               >
                 Start
               </Link>
