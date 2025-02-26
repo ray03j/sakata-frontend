@@ -25,7 +25,7 @@ export default function IndexPage() {
               radius: "full",
               variant: "shadow",
             })}
-            href={siteConfig.paths.gameSetting("12345")}
+            href={siteConfig.paths.gameSetting()}
           >
             Start
           </Link>

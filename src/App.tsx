@@ -12,10 +12,12 @@ function App() {
     <Routes>
       <Route element={<IndexPage />} path="/" />
       <Route element={<AboutPage />} path="/about" />
-      <Route path="/game/:gameId">
-        <Route path=":userId" element={<GamePlayingPage />} />
+      <Route path="/game">
+        <Route path=":gameId">
+          <Route path=":userId" element={<GamePlayingPage />} />
+          <Route path="result" element={<GameResultPage />} />
+        </Route>
         <Route path="setting" element={<GameSettingPage />} />
-        <Route path="result" element={<GameResultPage />} />
       </Route>
     </Routes>
   );
