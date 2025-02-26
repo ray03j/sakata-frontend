@@ -20,7 +20,7 @@ export const ChatList = ({chatcards}: ChatListProps) => {
             chat.userId===user_id ? "justify-end" : "justify-start"
           }`} 
         >
-            <ChatCard message={chat.message} userId={chat.userId} />  
+            <ChatCard message={chat.message} userName={chat.userName} userId={chat.userId} />  
         </div>
       ))}
     </div>

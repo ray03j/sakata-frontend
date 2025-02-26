@@ -14,11 +14,16 @@ export const useWebSocket = (url: string) => {
       console.log("📩 受信:", event.data);
       try {
         const receivedMessage = JSON.parse(event.data);
-        if (typeof receivedMessage.text === "string" && typeof receivedMessage.userId === "string") {
-          setMessages((prev) => [...prev, { userId: receivedMessage.userId , message: receivedMessage.text }]);
+        
+        if (typeof receivedMessage.text === "string" &&
+            typeof receivedMessage.userId === "string" &&
+            typeof receivedMessage.isDamage === "boolean"
+          ) {
+          setMessages((prev) => [...prev, { userId: receivedMessage.userId, userName: receivedMessage.userName, message: receivedMessage.text }]);
         } else {
           console.warn("⚠️ 不正なメッセージ形式:", receivedMessage);
         }
+
       } catch (error) {
         console.error("❌ JSON パースエラー:", error);
       }
@@ -33,7 +38,7 @@ export const useWebSocket = (url: string) => {
     if (ws.current?.readyState === WebSocket.OPEN) {
       const newMessage = { text };
       ws.current.send(JSON.stringify(newMessage));
-      setMessages((prev) => [...prev, { userId: user_id, message: text }]); 
+      setMessages((prev) => [...prev, { userId: "a", userName: "エイ", message: text }]); 
     }
   };
 
