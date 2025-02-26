@@ -3,12 +3,13 @@ import { ChatList } from "@/components/chat-list";
 import Timer from "@/components/timer";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import DefaultLayout from "@/layouts/default";
+import GameLayout from "@/layouts/game";
 
 export default function GamePlayingPage() {
   const {messages, sendMessage} = useWebSocket("ws://localhost:8080/ws");
   const theme = "エイくんが言いそうなこと"
   return (
-    <DefaultLayout>
+    <GameLayout>
       <h1 className="fixed p-4 top-14 left-1/2 -translate-x-1/2 text-xl font-bold bg-white/80 backdrop-blur p-2 rounded-lg shadow-md">
         {theme}
         <Timer />
@@ -21,6 +22,6 @@ export default function GamePlayingPage() {
       <div className="fixed bottom-10 left-0 w-full p-4 flex justify-center">
         <ChatInput sendMessage={sendMessage} />
       </div>
-    </DefaultLayout>
+    </GameLayout>
   );
 }
