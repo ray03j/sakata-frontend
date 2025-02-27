@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import SwimmingImage from "@/components/swimming-image";
+import { UserNameInput } from "@/components/username-input";
 
 export default function IndexPage() {
   return (
@@ -17,6 +18,8 @@ export default function IndexPage() {
           <span className={title({ color: "cyan" })}>エイ</span>
           <span className={title()}>くんのお気持ち</span>
         </div>
+
+        <UserNameInput />
 
         <div className="flex gap-3">
           <Link
