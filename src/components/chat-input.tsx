@@ -17,6 +17,7 @@ export const ChatInput = ({ sendMessage }: { sendMessage: (message: string) => v
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.ctrlKey && e.key === "Enter") {
+              if (input.trim() === "") return;
               sendMessage(input)
               setInput("")
             }

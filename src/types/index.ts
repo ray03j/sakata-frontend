@@ -5,7 +5,6 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 };
 
 export type MessageType = {
-  userId: string | undefined
   userName: string
   message: string
 }
