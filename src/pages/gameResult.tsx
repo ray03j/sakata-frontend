@@ -8,9 +8,18 @@ export default function ChatJudgeButtons() {
   const { gameId } = useParams<{ gameId: string }>();
   const [humanScore, setHumanScore] = useState(0);
   const [aiScore, setAiScore] = useState(0);
-  const resultMessage = humanScore > aiScore ? "あなたの勝ち！" : humanScore < aiScore ? "AIの勝ち…" : "引き分け";
-  const winnerColor = humanScore > aiScore ? "text-red-500" : humanScore < aiScore ? "text-blue-500" : "text-gray-500";
-
+  const resultMessage =
+    humanScore > aiScore
+      ? "あなたの勝ち！"
+      : humanScore < aiScore
+        ? "AIの勝ち…"
+        : "引き分け";
+  const winnerColor =
+    humanScore > aiScore
+      ? "text-red-500"
+      : humanScore < aiScore
+        ? "text-blue-500"
+        : "text-gray-500";
 
   useEffect(() => {
     if (!gameId) return;
@@ -28,20 +37,22 @@ export default function ChatJudgeButtons() {
 
   return (
     <DefaultLayout>
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="text-2xl font-bold">にんげん vs AI</div>
-      <div className="flex gap-8 text-xl">
-        <div>
-          <p className="text-center">にんげん</p>
-          <p className="text-center text-3xl font-bold">{humanScore}</p>
+      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <div className="text-2xl font-bold">にんげん vs AI</div>
+        <div className="flex gap-8 text-xl">
+          <div>
+            <p className="text-center">にんげん</p>
+            <p className="text-center text-3xl font-bold">{humanScore}</p>
+          </div>
+          <div>
+            <p className="text-center">AI</p>
+            <p className="text-center text-3xl font-bold">{aiScore}</p>
+          </div>
         </div>
-        <div>
-          <p className="text-center">AI</p>
-          <p className="text-center text-3xl font-bold">{aiScore}</p>
-        </div>
-      </div>
-      <p className={`mt-4 text-2xl font-bold ${winnerColor}`}>{resultMessage}</p>
-    </section>
-  </DefaultLayout>
+        <p className={`mt-4 text-2xl font-bold ${winnerColor}`}>
+          {resultMessage}
+        </p>
+      </section>
+    </DefaultLayout>
   );
 }

@@ -4,82 +4,56 @@ import { siteConfig } from "@/config/site";
 import DefaultLayout from "@/layouts/default";
 import { Link } from "@heroui/link";
 import { button as buttonStyles } from "@heroui/theme";
+import { Schema } from "@/types/schema";
+import { useThemeStore } from "@/store/useThemeStore";
 
 export default function GameSettingPage() {
-  const [theme, setTheme] = useState("");
-  const [themeId, setThemeId] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  
+  const setTheme = useThemeStore((state) => state.setTheme);
+  const theme = useThemeStore((state) => state.theme);
+
   const handleStartGame = async () => {
     if (!theme) return;
-  
-    setLoading(true);
+
     try {
-      const res = await fetch("http://localhost:8085/theme", {
+      const res = await fetch("http://localhost:8080/theme", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ theme }),
+        body: JSON.stringify({ theme: theme }),
       });
-  
-      if (!res.ok) throw new Error("Failed to create theme");
-  
-      const data = await res.json();
-      setThemeId(data.id);
-  
-      // 新しいゲームを開始 (初期スコア 0)
-      const gameRes = await fetch("http://localhost:8085/game", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          gameId: data.id,
-          humanScore: 0,
-          aiScore: 0,
-        }),
-      });
-  
-      if (!gameRes.ok) throw new Error("Failed to start game");
+
+      if (!res.ok) {
+        console.error(res);
+        return;
+      }
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
-  
+
   return (
     <DefaultLayout>
       <section className="">
         <div>
           <div>
             {/* テーマを入力 */}
-            <ThemeInput value={theme} onChange={(e) => setTheme(e.target.value)} />
+            <ThemeInput
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+            />
           </div>
           <div className="flex items-center justify-center min-h-100 p-10">
-            <button
+            <Link
               className={buttonStyles({
                 color: "primary",
                 radius: "full",
                 variant: "shadow",
               })}
-              onClick={handleStartGame}
-              disabled={loading}
+              href={siteConfig.paths.gamePlaying("1cd25514", "TODO: player")}
+              onPress={handleStartGame}
             >
-              {loading ? "Loading..." : "テーマ決定"}
-            </button>
+              テーマ決定
+            </Link>
           </div>
-          {themeId && (
-            <div className="flex items-center justify-center min-h-100 p-10">
-              <Link
-                className={buttonStyles({
-                  color: "primary",
-                  radius: "full",
-                  variant: "shadow",
-                })}
-                href={siteConfig.paths.gamePlaying(themeId, "player")}
-              >
-                Start
-              </Link>
-            </div>
-          )}
         </div>
       </section>
     </DefaultLayout>

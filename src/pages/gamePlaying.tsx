@@ -4,26 +4,13 @@ import { ChatInput } from "@/components/chat-input";
 import { ChatList } from "@/components/chat-list";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import GameLayout from "@/layouts/game";
+import { useThemeStore } from "@/store/useThemeStore";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // ✅ ここは OK
 
 export default function GamePlayingPage() {
   const { messages, sendMessage } = useWebSocket("ws://localhost:8080/ws");
-  const [theme, setTheme] = useState<string>("テーマを取得中...");
-  const { gameId } = useParams<{ gameId: string }>(); // ✅ gameId に変更 (ルート定義と一致させる)
-
-  useEffect(() => {
-    if (!gameId) return; // id が未取得なら処理しない
-
-    fetch(`http://localhost:8085/theme/${gameId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTheme(data.theme);
-      })
-      .catch(() => {
-        setTheme("テーマの取得に失敗しました");
-      });
-  }, [gameId]);
+  const theme = useThemeStore((state) => state.theme);
 
   return (
     <GameLayout>

@@ -1,10 +1,10 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  paths:{
+  paths: {
     home: () => "/",
     gameSetting: () => `/game/setting`,
-    gamePlaying: (gameId: string, userId: string) => `/game/${gameId}/${userId}`, 
+    gamePlaying: (gameId: string, userId: string) => `/game/${gameId}/play`,
     gameResult: (gameId: string) => `/game/${gameId}/result`,
     logout: () => "/logout",
   },
