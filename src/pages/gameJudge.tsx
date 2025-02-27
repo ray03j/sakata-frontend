@@ -1,13 +1,13 @@
 "use client";
 
-import { ChatInput } from "@/components/chat-input";
+import ChatJudgeButtons from "@/components/chat-judge";
 import { ChatList } from "@/components/chat-list";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import GameLayout from "@/layouts/game";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // ✅ ここは OK
 
-export default function GamePlayingPage() {
+export default function GameJudgePage() {
   const { messages, sendMessage } = useWebSocket("ws://localhost:8080/ws");
   const [theme, setTheme] = useState<string>("テーマを取得中...");
   const { gameId } = useParams<{ gameId: string }>(); // ✅ gameId に変更 (ルート定義と一致させる)
@@ -35,8 +35,8 @@ export default function GamePlayingPage() {
         <ChatList chatcards={messages} />
       </section>
 
-      <div className="fixed bottom-10 left-0 w-full p-4 flex justify-center">
-        <ChatInput sendMessage={sendMessage} />
+      <div className="fixed flex-cop bottom-10 left-0 w-full p-4 flex justify-center">
+        <ChatJudgeButtons />
       </div>
     </GameLayout>
   );

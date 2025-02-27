@@ -9,10 +9,10 @@ export default function GameSettingPage() {
   const [theme, setTheme] = useState("");
   const [themeId, setThemeId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
+  
   const handleStartGame = async () => {
     if (!theme) return;
-
+  
     setLoading(true);
     try {
       const res = await fetch("http://localhost:8085/theme", {
@@ -20,18 +20,31 @@ export default function GameSettingPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ theme }),
       });
-
+  
       if (!res.ok) throw new Error("Failed to create theme");
-
+  
       const data = await res.json();
       setThemeId(data.id);
+  
+      // 新しいゲームを開始 (初期スコア 0)
+      const gameRes = await fetch("http://localhost:8085/game", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          gameId: data.id,
+          humanScore: 0,
+          aiScore: 0,
+        }),
+      });
+  
+      if (!gameRes.ok) throw new Error("Failed to start game");
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <DefaultLayout>
       <section className="">
@@ -61,7 +74,7 @@ export default function GameSettingPage() {
                   radius: "full",
                   variant: "shadow",
                 })}
-                href={siteConfig.paths.gamePlaying(themeId, "player1")}
+                href={siteConfig.paths.gamePlaying(themeId, "player")}
               >
                 Start
               </Link>
