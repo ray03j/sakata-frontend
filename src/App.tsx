@@ -8,6 +8,7 @@ import GameResultPage from "@/pages/gameResult";
 import GameJudgePage from "@/pages/gameJudge";
 import { UserNameProvider } from "./hooks/UserNameContext";
 import GameWatingPage from "./pages/gameWating";
+import ResultPage from "./pages/result";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="ei" element={<GameJudgePage />} />
             <Route path="result" element={<GameResultPage />} />
           </Route>
+          <Route path="result" element={<ResultPage />} />
         </Route>
       </Routes>
     </UserNameProvider>
